@@ -2,6 +2,7 @@ package Assessment.Planit;
 
 import org.testng.annotations.Test;
 
+import dev.failsafe.Timeout;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.testng.annotations.BeforeSuite;
@@ -15,7 +16,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterSuite;
 
@@ -61,7 +65,7 @@ public class Base {
   @Test(priority = 4)
   public void desktopAction() throws InterruptedException{
 	  Actions action = new Actions(driver);
-	  WebElement computer = driver.findElement(By.xpath("//ul[@class='top-menu']//a[contains(text(),'omputers')]"));
+	  WebElement computer = driver.findElement(By.xpath("//ul[@class='top-menu']//a[contains(text(),'computers')]"));
 	  action.moveToElement(computer).build().perform();
 	  driver.findElement(By.xpath("//ul[@class='top-menu']//a[contains(text(),'Desktops')]")).click();
 	  Thread.sleep(3000);
@@ -141,8 +145,11 @@ public class Base {
   }
   @BeforeSuite
   public void setUp() throws InterruptedException {
+	  
 	  WebDriverManager.chromedriver().setup();
-	  driver = new ChromeDriver();
+	  ChromeOptions options = new ChromeOptions();
+	  options.addArguments("--remote-allow-origins=*");
+	  driver = new ChromeDriver(options);
 	  driver.manage().window().maximize();
 	  driver.manage().timeouts().getPageLoadTimeout();
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

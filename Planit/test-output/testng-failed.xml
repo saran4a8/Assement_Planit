@@ -3,13 +3,16 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Assessment.Planit.Base">
+      <class name="Assessment.Planit.HomePageTest">
         <methods>
-          <include name="shoppingCart"/>
-          <include name="tearDown"/>
+          <include name="confirm"/>
+          <include name="removeCart"/>
+          <include name="shipping"/>
           <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="billing"/>
         </methods>
-      </class> <!-- Assessment.Planit.Base -->
+      </class> <!-- Assessment.Planit.HomePageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
